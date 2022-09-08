@@ -55,6 +55,11 @@ const onclickLetter = function () {
         if (letter.className == entry[i]) {
             entrySecond = entrySecond.substring(0, i) + entry[i] + entrySecond.substring(i + 1);
             board.innerHTML = entrySecond;
+            if (board.textContent == entry) {
+                setTimeout(() => {
+                    board.innerHTML = `Wygrałeś! Hasło to: ${entry}`;
+            }, 500)
+            }
         }
     }
     if (entry.indexOf(letter.className) == -1) {
@@ -62,7 +67,7 @@ const onclickLetter = function () {
         image.src = `assets/s${filedTried}.jpg`;
         if (filedTried == 9) {
             activeLetters.forEach(letter => letter.removeEventListener("click", onclickLetter));
-            board.innerHTML = `Przegrałeś! Hasło to ${entry}`;
+            board.innerHTML = `Przegrałeś! Hasło to: ${entry}`;
         }
     }
 }
